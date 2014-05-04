@@ -1,0 +1,27 @@
+{% extends 'tidder/base.html' %}
+
+{% load story_extras %}
+
+{% load static %}
+
+{% block title %}Tidder{% endblock %}
+
+{% block content %}
+
+<p>
+<a href="{{ story.url }}">{{ story.title }}</a><span class="domain"> ({{ story.domain }})</span>
+</p>
+
+<p>
+{{ story.points }} points by {{ story.moderator.username }} {{ story.created_at|age }}
+</p>
+
+<p>
+{{ story.description }}
+</p>
+
+<hr/>
+
+<h3>Comments:</h3>
+
+{% endblock content %}

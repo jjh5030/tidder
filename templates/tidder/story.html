@@ -1,0 +1,22 @@
+{% extends 'tidder/base.html' %}
+
+{% block title %}Add Story{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+      <form action="/story/" method="post">
+      	{% csrf_token %}
+        <input type="text" class="form-control" placeholder="Title" name="title" value="" required autofocus>
+        <br/>
+        <textarea class="form-control" rows="3" placeholder="Description" name="description" value=""></textarea>
+        <br/>
+        <input type="text" class="form-control" placeholder="Url" name="url" value="">
+        <br/>
+        <button class="btn btn-lg btn-primary" type="submit" name="Submit">Submit</button>
+      </form>
+
+    </div> 
+
+{% endblock content %}

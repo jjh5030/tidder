@@ -1,0 +1,24 @@
+{% extends 'tidder/base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+		<form class="form-signin" id="user_form" method="post" action="/register/">
+			{% csrf_token %}
+			<h2 class="form-signin-heading">Please Register</h2>
+
+			<input type="text" class="form-control" placeholder="Username" name="username" value="" required autofocus>
+
+			<input type="text" class="form-control" placeholder="Email" name="email" value="" required >
+        	
+        	<input type="password" class="form-control" placeholder="Password" name="password" value="" required>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="submit">Register</button>
+
+		</form>
+
+	</div> <!-- /container -->
+
+{% endblock %}
