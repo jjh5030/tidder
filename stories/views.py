@@ -1,14 +1,17 @@
 from datetime import datetime
 
-from stories.models import Story
-from stories.forms import StoryForm, UserForm
+from stories.models import Story, UserProfile
+from stories.forms import StoryForm, UserForm, UserProfileForm
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect, get_object_or_404
 from django.template import RequestContext
 from django.utils.timezone import utc
+
 
 def score(story, gravity=1.8, timebase=120):
 	points = (story.points - 1)**0.8
@@ -87,21 +90,31 @@ def register(request):
 
 	if request.method == "POST":
 		user_form = UserForm(data=request.POST)
+		profile_form = UserProfileForm(data=request.POST)
 
-		if user_form.is_valid():
+		if user_form.is_valid() and profile_form.is_valid():
 			user = user_form.save()
 
 			user.set_password(user.password)
 			user.save()
 
+			profile = profile_form.save(commit=False)
+			profile.user = user
+
+			if 'picture' in request.FILES:
+				profile.picture = request.FILES['picture']
+
+			profile.save()
 			registered = True
 			return HttpResponseRedirect('/login/')
 		else:
-			print user_form.errors
+			print user_form.errors, profile_form.errors
 	else:
 		user_form = UserForm()
+		profile_form = UserProfileForm()
 
 	context_dict['user_form'] = user_form
+	context_dict['profile_form'] = profile_form
 	context_dict['registered'] = registered
 
 	return render_to_response('tidder/register.html', context_dict, context)
@@ -125,3 +138,19 @@ def story_detail(request, story_id):
 	context_dict['story'] = story
 
 	return render(request, 'tidder/detail.html', context_dict)
+
+@login_required
+def user_profile(request, user):
+	context_dict = {}
+
+	u = User.objects.get(username=user)
+
+	try:
+		up = UserProfile.objects.get(user=u)
+	except:
+		up = None
+	
+	context_dict['user_profile'] = u
+	context_dict['user_profile_info'] = up
+
+	return render(request, 'tidder/profile.html', context_dict)

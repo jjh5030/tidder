@@ -9,4 +9,5 @@ urlpatterns = patterns('',
 	url(r'^register/', views.register, name='register'),
 	url(r'^vote/', views.vote, name='vote'),
 	url(r'^story/(?P<story_id>\d+)/$', views.story_detail, name='story_detail'),
+	url(r'^user_profile/(?P<user>\w+)/$', views.user_profile, name='user_profile'),
 )

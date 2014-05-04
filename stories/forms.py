@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from stories.models import Story
+from stories.models import Story, UserProfile
 from django.contrib.auth.models import User
 
 
@@ -33,3 +33,13 @@ class UserForm(forms.ModelForm):
 	class Meta:
 		model = User
 		fields = ['username','email','password']
+
+class UserProfileForm(forms.ModelForm):
+	first_name = forms.CharField(help_text="Please enter your first name.", required=False)
+	last_name = forms.CharField(help_text="Please enter your last name.", required=False)
+	website = forms.URLField(help_text="Please enter your website.", required=False)
+	picture = forms.ImageField(help_text="Select a profile image to upload.", required=False)
+
+	class Meta:
+		model = UserProfile
+		fields = ['first_name', 'last_name', 'website', 'picture']

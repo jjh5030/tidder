@@ -1,0 +1,23 @@
+{% extends 'tidder/base.html' %}
+
+{% load story_extras %}
+
+{% load static %}
+
+{% block title %}Tidder - User: {{ user_profile.username }}{% endblock %}
+
+{% block content %}
+
+<h1>User Info for: {{ user_profile.username }}</h1>
+
+{% if user_profile_info.picture %}
+	<img class="profile-image" src="{{ user_profile_info.picture.url }}"/>
+	 <br/> <br/>
+{% endif %}
+
+First Name: {{ user_profile_info.first_name }} <br/>
+Last Name: {{ user_profile_info.last_name }} <br/>
+Website: <a href="{{ userprofile.website }}">{{ user_profile_info.website }}</a><br/>
+
+
+{% endblock content %}

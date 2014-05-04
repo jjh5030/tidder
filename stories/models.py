@@ -22,3 +22,15 @@ class Story(models.Model):
 
 	class Meta:
 		verbose_name_plural = "Stories"
+
+
+class UserProfile(models.Model):
+	user = models.OneToOneField(User)
+
+	first_name = models.CharField(max_length=200)
+	last_name = models.CharField(max_length=200)
+	website = models.URLField(blank=True)
+	picture = models.ImageField(upload_to='profile_images', blank=True)
+
+	def __unicode__(self):
+		return self.user.username

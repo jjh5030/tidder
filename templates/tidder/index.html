@@ -20,7 +20,7 @@
 				</p>
 
 				<p class="story-info" style="margin-left: 15px;">
-					{{ story.points }} points by {{ story.moderator.username }} {{ story.created_at|age }} | <a href="/story/{{ story.id }}">Comments</a>
+					{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }} | <a href="/story/{{ story.id }}">Comments</a>
 				</p>
 
 			</li>
