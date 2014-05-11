@@ -1,0 +1,29 @@
+{% block content %}
+
+<ul class="pagination">
+	{% if paginator_details.has_previous %}
+  	<li><a href="/results_page/{{ paginator_details.previous }}/">&laquo;</a></li>
+  	{% else %}
+  	<li class="disabled"><a href="/">&laquo;</a></li>
+  	{% endif %}
+
+  	{% for linkpage in paginator_details.page_range_show %}
+
+  	{% if paginator_details.current_page == linkpage %}
+  		<li class="active"><a href="/results_page/{{ linkpage }}/">{{ linkpage }} <span class="sr-only">(Page {{ linkpage }})</span></a></li>
+	{% else %}
+  		<li><a href="/results_page/{{ linkpage }}/">{{ linkpage }} <span class="sr-only">(Page {{ linkpage }})</span></a></li>
+  	{% endif %}
+
+  	{% endfor %}
+
+
+  	{% if paginator_details.has_next %}
+  	<li><a href="/results_page/{{ paginator_details.next }}/">&raquo;</a></li>
+  	{% else %}
+  	<li class="disabled"><a href="/">&raquo;</a></li>
+  	{% endif %}
+
+</ul>
+
+{% endblock content %}

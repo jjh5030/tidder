@@ -6,16 +6,16 @@
 
 {% block content %}
 
-<ol>
+<ol start="{{ list_start }}">
 	{% if stories %}
 		{% for story in stories %}
 			<li>
 				<p class="story-title">
 					{% if user.is_authenticated and story not in liked_stories %}
 					<a href ="/vote/" id="story-vote-{{ story.id }}" class="vote" ><img src="{% static 'img/arrow.gif' %}"></a>
-					<a href="{{ story.url }}" id="story-title-{{ story.id }}">{{ story.title }}</a><span class="domain"> ({{ story.domain }})</span>
+					<a href="{{ story.url }}" id="story-title-{{ story.id }}">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }})	{% endif %}</span>
 					{% else %}
-					<a href="{{ story.url }}" style="margin-left: 15px;">{{ story.title }}</a><span class="domain"> ({{ story.domain }})</span>
+					<a href="{{ story.url }}" style="margin-left: 15px;">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }}) {% endif %}</span>
 					{% endif %}
 				</p>
 

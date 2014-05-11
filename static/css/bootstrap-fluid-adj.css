@@ -41,3 +41,7 @@ body {
     width:100%;
     max-width:200px;
 }
+
+footer {
+  text-align:center;
+}

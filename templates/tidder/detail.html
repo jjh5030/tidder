@@ -9,7 +9,7 @@
 {% block content %}
 
 <p>
-<a href="{{ story.url }}">{{ story.title }}</a><span class="domain"> ({{ story.domain }})</span>
+<a href="{{ story.url }}">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }}) {% endif %}</span>
 </p>
 
 <p>
