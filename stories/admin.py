@@ -1,5 +1,5 @@
 from django.contrib import admin
-from stories.models import Story, UserProfile
+from stories.models import Story, UserProfile, Comment
 
 class StoryAdmin(admin.ModelAdmin):
 	fieldsets = [
@@ -27,3 +27,4 @@ class StoryAdmin(admin.ModelAdmin):
 
 admin.site.register(Story, StoryAdmin)
 admin.site.register(UserProfile)
+admin.site.register(Comment)

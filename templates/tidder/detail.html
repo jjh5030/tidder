@@ -4,7 +4,7 @@
 
 {% load static %}
 
-{% block title %}Tidder{% endblock %}
+{% block title %}Tidder - {{ story.title }}{% endblock %}
 
 {% block content %}
 
@@ -13,7 +13,7 @@
 </p>
 
 <p>
-{{ story.points }} points by {{ story.moderator.username }} {{ story.created_at|age }}
+{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }}
 </p>
 
 <p>
@@ -22,6 +22,27 @@
 
 <hr/>
 
-<h3>Comments:</h3>
+<h4>Comments:</h4>
+
+<form id="postcomment" method="post" action="">
+		<textarea class="form-control" rows="3" placeholder="Description" name="content" value=""></textarea>
+		<button class="btn btn-sm btn-primary" type="submit" name="Submit">Submit</button>
+		{% csrf_token %}
+	</form>
+
+<hr/>
+
+<ul id="commenters">
+	{% for c in comment_tree %}     
+		<li id="{{ c.id }}" class="c" style="margin-left:{{ c.depth|add:c.depth }}em;">
+			<p class="poster">{{ story.moderator.username }} - {{ c.date }}</p>
+			<p>{{ c.content }}</p>
+			<p><a href="" class="reply">reply</a></p>
+		</li>
+	{% empty %}
+</br>
+	<p>There are currently no comments.</p>
+	{% endfor %}
+</ul>
 
 {% endblock content %}

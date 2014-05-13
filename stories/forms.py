@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 
-from stories.models import Story, UserProfile
+from stories.models import Story, UserProfile, Comment
 from django.contrib.auth.models import User
 
 
@@ -43,3 +43,11 @@ class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ['first_name', 'last_name', 'website', 'picture']
+
+class CommentForm(forms.ModelForm):
+	#Hidden value to get a child's parent
+	parent = forms.CharField(widget=forms.HiddenInput(attrs={'class': 'parent'}), required=False)
+	
+	class Meta:
+		model = Comment
+		fields = ('content',)

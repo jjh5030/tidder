@@ -34,3 +34,14 @@ class UserProfile(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
+
+
+class Comment(models.Model):
+	content = models.TextField()
+	date = models.DateTimeField(auto_now_add=True)
+	path = models.CommaSeparatedIntegerField(max_length=200)
+	depth = models.PositiveSmallIntegerField(default=0)
+	story_id = models.ForeignKey(Story)
+	
+	def __unicode__(self):
+		return self.content
