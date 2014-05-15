@@ -25,7 +25,10 @@
 <h4>Comments:</h4>
 
 <form id="postcomment" method="post" action="">
-		<textarea class="form-control" rows="3" placeholder="Description" name="content" value=""></textarea>
+		{% for hidden in form.hidden_fields %}
+		{{ hidden }}
+		{% endfor %}
+		<textarea class="form-control" rows="3" placeholder="Description" name="content" value="" required></textarea>
 		<button class="btn btn-sm btn-primary" type="submit" name="Submit">Submit</button>
 		{% csrf_token %}
 	</form>
@@ -40,7 +43,7 @@
 			<p><a href="" class="reply">reply</a></p>
 		</li>
 	{% empty %}
-</br>
+<br/>
 	<p>There are currently no comments.</p>
 	{% endfor %}
 </ul>

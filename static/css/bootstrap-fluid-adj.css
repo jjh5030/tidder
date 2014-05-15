@@ -45,3 +45,19 @@ body {
 footer {
   text-align:center;
 }
+
+.c {
+  background: #CCCCCC;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+ul
+{
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}

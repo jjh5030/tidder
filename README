@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (c) 2014 Tidder
+Copyright (c) 2014 Tidder - John Hubner
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
-Started out as a copy of Django Unchained (http://courses.tutsplus.com/courses/django-unchained)
-Took a few things from Tango With Django (http://www.tangowithdjango.com/book/)
+Started out as a copy of Django Unchained
+(http://courses.tutsplus.com/courses/django-unchained)
 
-and now I call it Tidder (Reddit backwards), It's going to keep on growing as I learn Django.
+Took a few things from Tango With Django
+(http://www.tangowithdjango.com/book/)
+
+Threaded comments based of off Max Burstein's "Threaded Commenting System In Django"
+(http://maxburstein.com/blog/django-threaded-comments/)
+
+
+And now I call it Tidder (Reddit backwards), It's going to keep on growing as I learn Django.
