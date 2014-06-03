@@ -76,14 +76,19 @@ def main():
     else:
         sys.exit("Too many errors occurred while attempting to retrieve the data")
 
+    if len(items) == 0:
+        print ("An error occured while retrieving the data - No Data")
+
     # Add the stories to the database
     moderator = User.objects.get(username=USERNAME)
     for item in items:
+        print (item)
         story = Story(
             title=item['title'],
             url=item['url'],
             points=item['points'],
-            moderator=moderator)
+            moderator=moderator,
+            description=item['title'])
         story.save()
         story.created_at = created_at(item)
         story.save()
