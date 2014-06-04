@@ -38,7 +38,7 @@
 <ul id="commenters">
 	{% for c in comment_tree %}     
 		<li id="{{ c.id }}" class="c" style="margin-left:{{ c.depth|add:c.depth }}em;">
-			<p class="poster">{{ story.moderator.username }} - {{ c.date }}</p>
+			<p class="poster"><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a> {{ c.date |age }}</p>
 			<p>{{ c.content }}</p>
 			<p><a href="" class="reply">reply</a></p>
 		</li>

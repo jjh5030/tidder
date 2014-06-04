@@ -42,6 +42,7 @@ class Comment(models.Model):
 	path = models.CommaSeparatedIntegerField(max_length=200)
 	depth = models.PositiveSmallIntegerField(default=0)
 	story_id = models.ForeignKey(Story)
+	comment_moderator = models.ForeignKey(User, related_name='comment_moderated_stories')
 	
 	def __unicode__(self):
 		return self.content

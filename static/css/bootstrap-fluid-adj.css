@@ -4,7 +4,7 @@ body {
 }
 
 html { 
-  background: url(/static/img/background_light.jpg) no-repeat center center fixed; 
+  background: url(/static/img/background_light3.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -70,3 +70,45 @@ ul
   padding: 0px;
   margin: 0px;
 }
+
+ol {
+    counter-reset:li; /* Initiate a counter */
+    margin-left:0; /* Remove the default left margin */
+    padding-left:0; /* Remove the default left padding */
+}
+ol > li {
+    position:relative; /* Create a positioning context */
+    margin:0 0 6px 4em; /* Give each list item a left margin to make room for the numbers */    
+    list-style:none; /* Disable the normal item numbering */
+}
+ol > li:before {
+    content:counter(li); /* Use the counter as content */
+    counter-increment:li; /* Increment the counter by 1 */
+    /* Position and style the number */
+    position:absolute;
+    top:-2px;
+    left:-2em;
+    /* Some space between the number and the content in browsers that support
+       generated content but not positioning it (Camino 2 is one example) */
+    
+    text-align:center;
+    font-size: 24px;
+}
+
+a:link {
+    color: #1b1b1b;       
+}
+
+.story-info a:link {
+    color: #1b1b1b;   
+    font-weight:bold;    
+}
+
+a:visited {
+    color: #000000;
+    font-weight:bold;
+} 
+
+a:hover {
+    color: #FFFFFF;
+}  

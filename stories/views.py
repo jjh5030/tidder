@@ -207,6 +207,7 @@ def story_detail(request, story_id):
 				#Set a blank path then save it to get an ID
 				temp.path = ''
 				temp.story_id = story
+				temp.comment_moderator = request.user
 				temp.save()
 				temp.path = temp.id
 			else:
@@ -215,6 +216,7 @@ def story_detail(request, story_id):
 				temp.depth = node.depth + 1
 				temp.path = node.path
 				temp.story_id = story
+				temp.comment_moderator = request.user
 				
 				#Store parents path then apply comment ID
 				temp.save()
