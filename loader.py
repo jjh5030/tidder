@@ -87,8 +87,7 @@ def main():
             title=item['title'],
             url=item['url'],
             points=item['points'],
-            moderator=moderator,
-            description=item['title'])
+            moderator=moderator)
         story.save()
         story.created_at = created_at(item)
         story.save()

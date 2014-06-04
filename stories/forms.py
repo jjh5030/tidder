@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class StoryForm(ModelForm):
 	title = forms.CharField(max_length=200, help_text="Please Enter The Title Of The Page.")
-	url = forms.URLField(max_length=200, help_text="Please Enter The URL Of The Page.")
+	url = forms.URLField(max_length=200, help_text="Please Enter The URL Of The Page.", required=False)
 	description = forms.Textarea()
 
 	def clean(self):

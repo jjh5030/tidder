@@ -6,36 +6,21 @@
 
 {% block content %}
 
-<ol start="{{ list_start }}">
+<ol start="{{ list_start }}" class="main">
 	{% if stories %}
 		{% for story in stories %}
 			<li>
-				<p class="story-title">
-					{% if user.is_authenticated and story not in liked_stories %}
-					<a href ="/vote/" id="story-vote-{{ story.id }}" class="vote" ><img src="{% static 'img/arrow.gif' %}"></a>
-					<a href="{{ story.url }}" id="story-title-{{ story.id }}">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }})	{% endif %}</span>
-					{% else %}
-					<a href="{{ story.url }}" style="margin-left: 15px;">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }}) {% endif %}</span>
-					{% endif %}
-				</p>
+				<h3><a href="{{ story.url }}">{{ story.title }}</a>
+				<small> {% if story.domain %} ({{ story.domain }}) {% endif %}</small></h3>
 
-				<p class="story-info" style="margin-left: 15px;">
-					{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }} | <a href="/story/{{ story.id }}">Comments</a>
+				<p class="story-info">
+					{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }} | <a href="{% url 'story' %}{{ story.id }}">Comments</a>
 				</p>
 
 			</li>
+			<hr>
 		{% endfor %}
 	{% endif %}
 </ol>
 
 {% endblock content %}
-
-<!-- 
-<button id ="upvote" type="button" class="btn btn-success btn-sm">
-<span class="glyphicon glyphicon-thumbs-up"></span>
-</button>
-<button id ="downvote" type="button" class="btn btn-danger btn-sm">
-<span class="glyphicon glyphicon-thumbs-down"></span>
-</button>
-
--->

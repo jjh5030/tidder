@@ -1,12 +1,12 @@
 {% extends 'tidder/base.html' %}
 
-{% block title %}Add Story{% endblock %}
+{% block title %}Add Post{% endblock %}
 
 {% block content %}
 
     <div class="container">
 
-      <form action="/story/" method="post">
+      <form action="{% url 'story' %}" method="post">
       	{% csrf_token %}
         <input type="text" class="form-control" placeholder="Title" name="title" value="" required autofocus>
         <br/>
