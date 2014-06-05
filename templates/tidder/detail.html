@@ -42,10 +42,10 @@
 <ul id="commenters">
 	{% for c in comment_tree %}     
 		<li id="{{ c.id }}" class="c" style="margin-left:{{ c.depth|add:c.depth }}em;">
-			<p class="poster"><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a> - {{ c.date |age }}</p>
+			<p class="poster"><b><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a></b> - {{ c.date |age }}</p>
 			<p>{{ c.content }}</p>
 			{% if user.is_authenticated %}
-				<p><a href="" class="reply">reply</a></p>
+				<p><a href="" class="reply"><button type="button" class="btn btn-primary btn-xs">reply</button></a></p> 
 			{% endif %}
 		</li>
 	{% empty %}

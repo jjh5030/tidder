@@ -1,0 +1,17 @@
+1) fix numbering from page to page. everything resets now. probably need to do a table layout and do the number in html
+
+2) voting for each post
+
+3) username case sensitivity
+
+4) forgot password
+
+5) email verification
+
+6) messages for bad login
+
+7) profile page to include list of starred links?
+
+8) text formatting in description field on new story
+
+9) 

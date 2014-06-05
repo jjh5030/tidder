@@ -110,7 +110,7 @@ a:visited {
 } 
 
 a:hover {
-    color: #FFFFFF;
+    color: #428bca;
 }  
 
 hr {
@@ -118,4 +118,13 @@ hr {
     border: 0 none;
     color: #FFFFFF;
     height: 2px;
+}
+
+.poster {
+    font-size: 10px;
+    color: #000000;
+}
+
+.reply-comment {
+    color: #428bca;
 }

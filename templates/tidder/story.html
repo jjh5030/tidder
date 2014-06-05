@@ -4,8 +4,6 @@
 
 {% block content %}
 
-    <div class="container">
-
       <form action="{% url 'story' %}" method="post">
       	{% csrf_token %}
         <input type="text" class="form-control" placeholder="Title" name="title" value="" required autofocus>
@@ -16,7 +14,5 @@
         <br/>
         <button class="btn btn-lg btn-primary" type="submit" name="Submit">Submit</button>
       </form>
-
-    </div> 
 
 {% endblock content %}
