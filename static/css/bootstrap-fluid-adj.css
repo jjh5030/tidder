@@ -128,3 +128,12 @@ hr {
 .reply-comment {
     color: #428bca;
 }
+
+#left {
+    float: left;
+	margin-right: 20px;
+}
+#right {
+    overflow: hidden;
+	margin-bottom: 30px;
+}

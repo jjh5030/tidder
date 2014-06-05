@@ -179,6 +179,7 @@ def register(request):
 
 @login_required
 def vote(request):
+	print "entered voting"
 	# check to make sure user already hasnt voted before saving, JIC
 	story = get_object_or_404(Story, pk=request.POST.get('story'))
 	story.points += 1

@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	$('#story-vote-31').upvote();
+
 	// using jQuery
 	function getCookie(name) {
 	    var cookieValue = null;
@@ -25,8 +27,7 @@ $(document).ready(function() {
 			url: "/vote/",
 			data: {"story": storyID},
 			success: function() {
-				$("#story-vote-" + storyID).hide();
-				$("#story-title-" + storyID).css({"margin-left": "15px"});
+				//$("#story-vote-" + storyID).hide();
 			},
 			headers: {
 				'X-CSRFToken': csrftoken
@@ -36,7 +37,7 @@ $(document).ready(function() {
 	}
 
 
-	$("a.vote").click(function() {
+	$("a.upvote").click(function() {
 		var storyID = parseInt(this.id.split("-")[2]);
 		return vote(storyID);
 	});

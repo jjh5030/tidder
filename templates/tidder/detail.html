@@ -8,13 +8,31 @@
 
 {% block content %}
 
-<p>
-<h3><a href="{{ story.url }}">{{ story.title }}</a><small>  {% if story.domain %} ({{ story.domain }}) {% endif %}</small></h3>
-</p>
+<div id="left"> 
 
-<p>
-{{ story.points }} points by <b><a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a></b> {{ story.created_at|age }}
-</p>
+	<div id="story-vote-{{ story.id }}" class="upvote">
+		<a id="story-vote-{{ story.id }}" class="upvote"></a>
+		<span class="count">{{ story.points }}</span>
+		<a class="downvote"></a>
+		<a class="star"></a>
+	</div>
+
+</div>
+
+<div id="right">
+	<div id="story-title-{{ story.id }}" class="title">
+
+	<p>
+	<h3><a href="{{ story.url }}">{{ story.title }}</a><small>  {% if story.domain %} ({{ story.domain }}) {% endif %}</small></h3>
+	</p>
+
+	<p>
+	Posted by <b><a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a></b> {{ story.created_at|age }}
+	</p>
+
+	</div>
+
+</div>
 
 <p>
 {{ story.description }}
