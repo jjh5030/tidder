@@ -6,21 +6,22 @@
 
 {% block content %}
 
-<ol start="{{ list_start }}" class="mylist">
-	{% if stories %}
-		{% for story in stories %}
-			<li>
+{% if stories %}
+	{% for story in stories %}
+		<p class="story-title">
+			{% if story.domain %} 
 				<h3><a href="{{ story.url }}">{{ story.title }}</a>
-				<small> {% if story.domain %} ({{ story.domain }}) {% endif %}</small></h3>
+				<small> ({{ story.domain }})</small></h3>
+			{% else %}
+				<h3><a href="{% url 'story' %}{{ story.id }}">{{ story.title }}</a></h3>
+			{% endif %}	
+		</p>
 
-				<p class="story-info">
-					{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }} | <a href="{% url 'story' %}{{ story.id }}">Comments</a>
-				</p>
-
-			</li>
-			<hr>
-		{% endfor %}
-	{% endif %}
-</ol>
+		<p class="story-info">
+			{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }} | <a href="{% url 'story' %}{{ story.id }}">Comments</a>
+		</p>
+		<hr>
+	{% endfor %}
+{% endif %}
 
 {% endblock content %}
