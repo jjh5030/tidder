@@ -9,11 +9,11 @@
 {% block content %}
 
 <p>
-<a href="{{ story.url }}">{{ story.title }}</a><span class="domain"> {% if story.domain %} ({{ story.domain }}) {% endif %}</span>
+<h3><a href="{{ story.url }}">{{ story.title }}</a><small>  {% if story.domain %} ({{ story.domain }}) {% endif %}</small></h3>
 </p>
 
 <p>
-{{ story.points }} points by <a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a> {{ story.created_at|age }}
+{{ story.points }} points by <b><a href="/user_profile/{{ story.moderator.username }}">{{ story.moderator.username }}</a></b> {{ story.created_at|age }}
 </p>
 
 <p>
@@ -22,25 +22,31 @@
 
 <hr/>
 
-<h4>Comments:</h4>
+<h4>Add Comment:</h4>
 
-<form id="postcomment" method="post" action="">
-		{% for hidden in form.hidden_fields %}
-		{{ hidden }}
-		{% endfor %}
-		<textarea class="form-control" rows="3" placeholder="Description" name="content" value="" required></textarea>
-		<button class="btn btn-sm btn-primary" type="submit" name="Submit">Submit</button>
-		{% csrf_token %}
-	</form>
+{% if user.is_authenticated %}
+	<form id="postcomment" method="post" action="">
+			{% for hidden in form.hidden_fields %}
+			{{ hidden }}
+			{% endfor %}
+			<textarea class="form-control" rows="3" placeholder="Description" name="content" value="" required></textarea>
+			<button class="btn btn-sm btn-primary" type="submit" name="Submit">Submit</button>
+			{% csrf_token %}
+		</form>
+{% else %}
+	<p><a href="{% url 'login' %}"><b>Login</b></a> to Comment</p>
+{% endif %}
 
 <hr/>
 
 <ul id="commenters">
 	{% for c in comment_tree %}     
 		<li id="{{ c.id }}" class="c" style="margin-left:{{ c.depth|add:c.depth }}em;">
-			<p class="poster"><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a> {{ c.date |age }}</p>
+			<p class="poster"><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a> - {{ c.date |age }}</p>
 			<p>{{ c.content }}</p>
-			<p><a href="" class="reply">reply</a></p>
+			{% if user.is_authenticated %}
+				<p><a href="" class="reply">reply</a></p>
+			{% endif %}
 		</li>
 	{% empty %}
 <br/>

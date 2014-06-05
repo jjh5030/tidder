@@ -112,3 +112,10 @@ a:visited {
 a:hover {
     color: #FFFFFF;
 }  
+
+hr {
+    background-color: #FFFFFF;
+    border: 0 none;
+    color: #FFFFFF;
+    height: 2px;
+}

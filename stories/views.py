@@ -3,6 +3,8 @@ from datetime import datetime
 from stories.models import Story, UserProfile, Comment
 from stories.forms import StoryForm, UserForm, UserProfileForm, CommentForm
 
+from django.core.urlresolvers import reverse
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -201,7 +203,7 @@ def story_detail(request, story_id):
 			temp = form.save(commit=False)
 			parent = form['parent'].value()
 
-			print 'parent', parent
+			#print 'parent', parent
 			
 			if parent == '' or parent is None:
 				#Set a blank path then save it to get an ID
@@ -213,7 +215,13 @@ def story_detail(request, story_id):
 			else:
 				#Get the parent node
 				node = Comment.objects.get(id=parent)
-				temp.depth = node.depth + 1
+
+				#Max 5 levels deep
+				if node.depth < 6:
+					temp.depth = node.depth + 1
+				else:
+					temp.depth = 5
+
 				temp.path = node.path
 				temp.story_id = story
 				temp.comment_moderator = request.user
@@ -225,12 +233,23 @@ def story_detail(request, story_id):
 			#Final save for parents and children
 			temp.save()
 			context_dict['form'] = form
+
+			# After successful submission and processing of a web form
+			return HttpResponseRedirect(reverse('story_detail', args=(story_id,)))
+
 	else:
 		context_dict['form'] = CommentForm()
+
+	# may need to do the sorting in python since the database will treat the column as a string 
+	# I believe, so 10 will come before 2
 
 	try:
 		comment_tree = Comment.objects.filter(story_id=story).order_by('path')
 		context_dict['comment_tree'] = [comment for comment in comment_tree]
+
+		#for comment in comment_tree:
+		#	print comment.id, comment.path
+
 	except:
 		context_dict['comment_tree'] = []    
 
