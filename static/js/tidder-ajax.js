@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
-	$('#story-vote-31').upvote();
+	var story_id = $("div.upvote").attr("id");
+	$('#' + story_id).upvote();
 
 	// using jQuery
 	function getCookie(name) {

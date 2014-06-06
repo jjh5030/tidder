@@ -86,12 +86,6 @@ def index(request, page_number=1):
 	context_dict = {'stories': stories}
 	context_dict['user'] = request.user
 
-	if request.user.is_authenticated():
-		liked_stories = request.user.liked_stories.filter(id__in=[story.id for story in stories])
-	else:
-		liked_stories = []
-
-	context_dict['liked_stories'] = liked_stories
 	context_dict['list_start'] = (int(page_number)*int(25))-int(25) + 1 
 	context_dict['show_paginator'] = True
 	context_dict['paginator_details'] = build_paginator(page_number=int(page_number))
@@ -179,7 +173,6 @@ def register(request):
 
 @login_required
 def vote(request):
-	print "entered voting"
 	# check to make sure user already hasnt voted before saving, JIC
 	story = get_object_or_404(Story, pk=request.POST.get('story'))
 	story.points += 1
@@ -196,6 +189,13 @@ def story_detail(request, story_id):
 
 	story = get_object_or_404(Story, pk=story_id)
 	context_dict['story'] = story
+
+	if request.user.is_authenticated():
+		liked_stories = request.user.liked_stories.filter(id__in=[story_id])
+	else:
+		liked_stories = []
+
+	context_dict['liked_stories'] = liked_stories
 	
 	if request.method == "POST":
 		form = CommentForm(data=request.POST)

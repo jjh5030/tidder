@@ -11,7 +11,12 @@
 <div id="left"> 
 
 	<div id="story-vote-{{ story.id }}" class="upvote">
-		<a id="story-vote-{{ story.id }}" class="upvote"></a>
+		{% if story not in liked_stories %}
+			<a id="story-vote-{{ story.id }}" class="upvote"></a>
+		{% else %}
+			<a id="story-vote-{{ story.id }}" class="upvote upvote-on"></a>
+		{% endif %}
+
 		<span class="count">{{ story.points }}</span>
 		<a class="downvote"></a>
 		<a class="star"></a>
