@@ -9,9 +9,12 @@
 {% block content %}
 
 <h1>User Info for: {{ user_profile.username }}</h1>
-
+<br/>
 {% if user_profile_info.picture %}
 	<img class="profile-image" src="{{ user_profile_info.picture.url }}"/>
+	 <br/> <br/>
+{% else %}
+	<img class="profile-image" src="{% static 'img/blank-user-small.jpg' %}"/>
 	 <br/> <br/>
 {% endif %}
 
