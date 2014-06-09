@@ -100,7 +100,7 @@ def story(request):
 			story = form.save(commit=False)
 			story.moderator = request.user
 			story.save()
-			return HttpResponseRedirect('/')
+			return HttpResponseRedirect('/post/%s/' % (story.id))
 	else:
 		form = StoryForm()
 
