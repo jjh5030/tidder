@@ -82,7 +82,6 @@ def main():
     # Add the stories to the database
     moderator = User.objects.get(username=USERNAME)
     for item in items:
-        print (item)
         story = Story(
             title=item['title'],
             url=item['url'],
