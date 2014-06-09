@@ -6,7 +6,7 @@
 
 5) email verification
 
-6) messages for bad login
+6) messages for bad login / messages all around for different things.
 
 7) profile page to include list of starred links?
 
@@ -17,6 +17,8 @@
 11) Stop multiple comment forms when replying to Comment - change 'reply' to 'hide'
 
 12) Rest api for only me for auto posting
+
+13) restrict link sharing to no dups within 72 hours
 
 
 ************** DONE **************
