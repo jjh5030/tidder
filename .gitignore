@@ -3,3 +3,4 @@
 db.sqlite3
 stories/migrations/0001_initial.py
 stories/migrations/__init__.py
+tidder/email_info.py

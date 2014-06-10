@@ -1,13 +1,15 @@
 from datetime import datetime
 
 from stories.models import Story, UserProfile, Comment
-from stories.forms import StoryForm, UserForm, UserProfileForm, CommentForm
+from stories.forms import StoryForm, UserForm, UserProfileForm, CommentForm, ContactForm
 
 from django.core.urlresolvers import reverse
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+from django.core.mail import send_mail
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response, render, redirect, get_object_or_404
@@ -271,3 +273,26 @@ def user_profile(request, user):
 	context_dict['user_profile_info'] = up
 
 	return render(request, 'tidder/profile.html', context_dict)
+
+def contact(request):
+	if request.method == 'POST': # If the form has been submitted...
+		# ContactForm was defined in the previous section
+		form = ContactForm(request.POST) # A form bound to the POST data
+		if form.is_valid(): # All validation rules pass
+			# Process the data in form.cleaned_data
+			name = form.cleaned_data['name']
+			subject = form.cleaned_data['subject']
+			message = form.cleaned_data['message']
+			sender = form.cleaned_data['sender_email']
+			cc_myself = form.cleaned_data['cc_myself']
+
+			recipients = ['jjh5030@gmail.com']
+			if cc_myself:
+				recipients.append(sender)
+			
+			send_mail(subject, message, sender, recipients)
+			return HttpResponseRedirect('/') # Redirect after POST
+	else:
+		form = ContactForm() # An unbound form
+
+	return render(request, 'tidder/contact.html', {'form': form,})

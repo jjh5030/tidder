@@ -11,4 +11,5 @@ urlpatterns = patterns('',
 	url(r'^post/(?P<story_id>\d+)/$', views.story_detail, name='story_detail'),
 	url(r'^user_profile/(?P<user>\w+)/$', views.user_profile, name='user_profile'),
 	url(r'^results_page/(?P<page_number>\d+)/$', views.index, name='index'),
+	url(r'^contact/', views.contact, name='contact'),
 )

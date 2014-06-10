@@ -51,3 +51,10 @@ class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
 		fields = ('content',)
+
+class ContactForm(forms.Form):
+	name = forms.CharField(required=True)
+	sender_email = forms.EmailField(required=True)
+	subject = forms.CharField(required=True)
+	message = forms.CharField(required=True)
+	cc_myself = forms.BooleanField(required=False)

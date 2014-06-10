@@ -40,15 +40,17 @@
           <a class="navbar-brand" href="/">Tidder</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right">          	
 			{% if user.is_authenticated %}
 				<li class="navbar-text">Welcome, {{ user.username }}</li>
+				<li><a href="{% url 'contact' %}">Contact</a></li>
 				<li><a href="{% url 'logout' %}">Logout</a></li>
 				<li><a href="{% url 'story' %}">Add Story</a></li>
 			{% else %}
+				<li><a href="{% url 'contact' %}">Contact</a></li>
 				<li><a href="{% url 'register' %}">Register</a></li>
 				<li><a href="{% url 'login' %}">Login</a></li>
-			{% endif %}
+			{% endif %}				
           </ul>
           <!-- 
           <form class="navbar-form navbar-right">
