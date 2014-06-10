@@ -68,7 +68,7 @@
 			<p class="poster"><b><a href="/user_profile/{{ c.comment_moderator.username }}">{{ c.comment_moderator.username }}</a></b> - {{ c.date |age }}</p>
 			<p>{{ c.content }}</p>
 			{% if user.is_authenticated %}
-				<p><a href="" class="reply"><button type="button" class="btn btn-primary btn-xs">reply</button></a></p> 
+				<p><a id="reply-{{ c.id }}" href="" class="reply"><button type="button" class="btn btn-primary btn-xs">reply</button></a></p> 
 			{% endif %}
 		</li>
 	{% empty %}

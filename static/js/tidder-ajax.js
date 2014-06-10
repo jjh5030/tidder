@@ -50,6 +50,8 @@ $(document).ready(function() {
 		var form = $("#postcomment").clone(true);
 		form.find('.parent').val($(this).parent().parent().attr('id'));
 		$(this).parent().append(form);
+		//$("#reply-" + story_id).remove();
+		this.style.display = 'none'
 	});
 
 

@@ -19,6 +19,7 @@ from stories.models import Story
 # This script made possible with the help of the Unofficial Hacker News API
 # provided by Ronnie Roller (http://ronnieroller.com)
 HACKER_NEWS_API_URL = 'http://api.ihackernews.com/page'
+headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36'}
 
 # The Hacker News API errors out from time to time, this number controls
 # how many times the script attempts to retrieve the data from the service.
@@ -54,7 +55,8 @@ def main():
     # Attempt to retrieve and process the data from the Unoffical Hacker News API
     for i in range(RETRY_ATTEMPTS + 1):
         try:
-            response = urllib2.urlopen(HACKER_NEWS_API_URL)
+            req = urllib2.Request(HACKER_NEWS_API_URL, headers=headers)
+            response = urllib2.urlopen(req)
             status_code = response.code
         except urllib2.HTTPError, e:
             status_code = e.code
@@ -90,6 +92,8 @@ def main():
         story.save()
         story.created_at = created_at(item)
         story.save()
+
+        #print (created_at(item))
 
 if __name__ == '__main__':
     main()

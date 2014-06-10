@@ -12,21 +12,19 @@
 
 8) text formatting in description field on new story
 
-9) add contact page
-
-11) Stop multiple comment forms when replying to Comment - change 'reply' to 'hide'
-
-12) Rest api for only me for auto posting
-
 13) restrict link sharing to no dups within 72 hours
 
 
 ************** DONE **************
 
+11) Stop multiple comment forms when replying to Comment - change 'reply' to 'hide'
 
+9) add contact page
 
 ************** SKIP **************
 
 1) fix numbering from page to page. everything resets now. probably need to do a table layout and do the number in html
 
 10) Profile image - add back in
+
+12) Restricted Rest api
