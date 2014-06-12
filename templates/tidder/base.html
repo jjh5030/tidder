@@ -7,19 +7,14 @@
 		<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name ="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- Bootstrap  -->
-
 		
+		<meta name="keywords" content="programming, code, python, django, bootsrap, javascript, reddit, hackernews">    
+		<meta name="description" content="{% block description %}Tidder - {{ story.title }}{% endblock %}">
+
+	
+		<!-- Bootstrap  -->		
 		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-		<!-- 
-		<link href="{% static 'css/bootstrap-theme.min.css' %}" rel="stylesheet">
-		<link href="{% static 'css/bootstrap-responsive.css' %}" rel="stylesheet">
-		-->
-
-		<link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">
-		<!-- <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-		<link href="{% static 'css/bootstrap-glyphicons.css' %}" rel="stylesheet"> -->
-		
+		<link href="{% static 'css/bootstrap-fluid-adj.css' %}" rel="stylesheet">		
 		<link href="{% static 'css/jquery.upvote.css' %}" rel="stylesheet">
 
 		<title>{% block title %}Tidder{% endblock %}</title>
@@ -86,7 +81,7 @@
 		<script src="{% static 'js/jquery-2.1.0.min.js' %}"></script>
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>	
 		<script src="{% static 'js/tidder-ajax.js' %}"></script>
-		<script src="{% static 'js/jquery.upvote.js' %}"></script>
+		<script src="{% static 'js/jquery.upvote.js' %}"></script>		
 
 	</body>
 </html>

@@ -39,6 +39,9 @@
 
 </div>
 
+<!-- https://github.com/carrot/share-button -->
+<div class='share-button share-button-top'></div>
+
 <p>
 {{ story.description }}
 </p>
@@ -76,5 +79,15 @@
 	<p>There are currently no comments.</p>
 	{% endfor %}
 </ul>
+
+		<script src="{% static 'js/share.min.js' %}"></script>
+		<script>
+			var share_button_top = new Share(".share-button-top", {
+			  title: "Share Button Multiple Element Test",
+			  ui: {
+				flyout: "top center"
+			  }
+			});
+		</script>
 
 {% endblock content %}
