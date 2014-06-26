@@ -4,11 +4,7 @@ body {
 }
 
 html { 
-  background: url(/static/img/background_light3.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background-color:#F2F2F2;
 }
 
 .form-signin {
