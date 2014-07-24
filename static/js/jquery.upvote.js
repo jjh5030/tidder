@@ -121,11 +121,48 @@
             that.find(dot_star_css).removeClass(starred_css);
         }
     }
+	
+		// using jQuery
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie != '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	};
+	var csrftoken = getCookie('csrftoken');
 
     function callback(that) {
         var data = that.data(namespace);
-        data.callback(data);
+        vote(data);
     }
+	
+	var story_id = $("div.upvote").attr("id");
+	
+	function vote(data) {
+    $.ajax({
+        url: '/vote/',
+        type: 'POST',
+        data: { id: story_id, up: data.upvoted, down: data.downvoted, star: data.starred },
+		success: function() {
+			// alert("Success!");
+		},
+		headers: {
+			'X-CSRFToken': csrftoken
+		},
+		error: function(rs, e){
+		   alert("An error occured!");
+		}
+    });
+};
 
     function upvote() {
         var data = this.data(namespace);

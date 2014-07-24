@@ -21,29 +21,6 @@ $(document).ready(function() {
 	}
 	var csrftoken = getCookie('csrftoken');
 
-
-	function vote (storyID) {
-		$.ajax({
-			type: "POST",
-			url: "/vote/",
-			data: {"story": storyID},
-			success: function() {
-				//$("#story-vote-" + storyID).hide();
-			},
-			headers: {
-				'X-CSRFToken': csrftoken
-			}
-		});
-		return false;
-	}
-
-
-	$("a.upvote").click(function() {
-		var storyID = parseInt(this.id.split("-")[2]);
-		return vote(storyID);
-	});
-
-
 	$("#commenters").on("click", ".reply", function(event){
 		event.preventDefault();
 		//$("#postcomment").remove();

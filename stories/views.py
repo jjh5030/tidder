@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from django.http import Http404
 from django.core.mail import send_mail
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -175,13 +176,22 @@ def register(request):
 
 @login_required
 def vote(request):
-	# check to make sure user already hasnt voted before saving, JIC
-	story = get_object_or_404(Story, pk=request.POST.get('story'))
-	story.points += 1
-	story.save()
-	user = request.user
-	user.liked_stories.add(story)
-	user.save()
+
+	if request.is_ajax() and request.POST:
+		star = request.POST.get('star')
+		id = request.POST.get('id').replace("story-vote-","")
+		up = request.POST.get('up')
+		down = request.POST.get('down')
+		print "{id:%s, star:%s, up:%s, down:%s}" % (id, star, up, down)
+		# check to make sure user already hasnt voted before saving, JIC
+		# cstory = get_object_or_404(Story, pk=request.POST.get('story'))
+		# cstory.points += 1
+		# cstory.save()
+		# cuser = request.user
+		# cuser.liked_stories.add(story)
+		# cuser.save()
+	else:
+		raise Http404
 
 	return HttpResponse()
 
